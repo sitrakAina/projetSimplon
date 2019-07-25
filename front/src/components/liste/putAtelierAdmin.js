@@ -5,15 +5,14 @@ class PutAtelier extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      titre: '',
-      utilisateur:'',
-      prix: '',
-      heure: '',
-      duree: '',
-      data: '',
-      place: '',
-      description: '',
-      image: '',
+        titre: '',
+        description:'',
+        date: '',
+        heure: '',
+        duree: '',
+        place: '',
+        user:'',
+        prix: '',
     }
     this.onChange = this.onChange.bind(this)
     this.handleUploadImage = this.handleUploadImage.bind(this);
@@ -28,16 +27,17 @@ handleUploadImage(ev) {
   ev.preventDefault();
 
   const data = new FormData();
-  data.append('image', this.uploadInput.files[0]);
-  data.append('titre', this.state.titre);
-  data.append('prix', this.state.prix);
-  data.append('debut', this.state.heure);
-  data.append('duree', this.state.duree);
-  data.append('place', this.state.place);
-  data.append('idUser', localStorage.id);
-  data.append('description', this.state.description)
+    data.append('photo_produit', this.uploadInput.files[0]);
+    data.append('titre',this.state.titre);
+    data.append('description',this.state.description);
+    data.append('date',this.state.date);
+    data.append('horaire',this.state.horaire);
+    data.append('duree',this.state.duree);
+    data.append('place_dispo',this.state.place_dispo);
+    data.append('place_reserve',this.state.place_reserve);
+    data.append('prix',this.state.prix);
 
-  fetch('http://localhost:8080/api/users/putArticle/'+ this.props.match.params.id, {
+  fetch('http://localhost:8080/projet/route/article'+ this.props.match.params.id, {
     method: 'PUT',
     body: data,
   }).then((response) => {
@@ -46,7 +46,7 @@ handleUploadImage(ev) {
       
       
     response.json().then((body) => {
-      this.setState({ image: `http://localhost:8080/api/users/newArticle/${body.image}` });
+      this.setState({ image: `http://localhost:8080/projet/route/article/${body.image}` });
       console.log('ity ilay body.image', body.image);
 
     });
@@ -115,11 +115,7 @@ handleUploadImage(ev) {
             
             <div className="row">
             <input ref={(ref) => { this.uploadInput = ref; }} type="file" name="image" />
-                <button id="validate" className="btn btn-info">Publier</button>
-             
-                
-                
-              
+                <button id="validate" className="btn btn-info">Publier</button>      
             </div>
             
             

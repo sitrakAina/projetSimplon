@@ -7,7 +7,6 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 import PutAtelier from '../liste/putAtelierAdmin';
 
 class Article extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = { produit: [] };
@@ -88,7 +87,9 @@ class Article extends React.Component {
                                                 }
                                             >Edit</button>
                                         </p>
+                                        <p><input type="text" /></p>
                                     </td>
+                                    <td><input type="checkbox" /></td>
                                 </tr>)
 
                             })

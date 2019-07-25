@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom'
 import './listeAtelier.css';
 
 
@@ -27,11 +28,11 @@ export default class ListTout extends Component {
     liste() {
         return <div>
             <div className="table-responsive">
-
+                <div className="row">
                 {
                     (this.state.produit.length > 0) ? (this.state.produit.map((obj) => {
                         return <div>
-                            <div className="card">
+                            <div className="card col-md-6">
                                 <a href="https">
                                   <div className="card-image" key={obj._id}>
                                     <img width="400px" height="450" src={'http://localhost:8080/projet/routes/atelier/' + obj.image} alt="pdp" />
@@ -51,13 +52,17 @@ export default class ListTout extends Component {
                                       <p>{obj.description}</p>
                                     </div>
                                   </div>
+                                  <div className="row">
+                                        <div className="card-footer">
+                                            <Link to="/visiteur" className="btn btn-sm btn-great light orange">M'INSCRIRE</Link>
+                                        </div>
+                                    </div>
                                 </a>
                             </div>
-                            <br />
                         </div>
-
                     })) : ('')
                 }
+                </div>
             </div>
         </div>
     }

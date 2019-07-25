@@ -100,18 +100,9 @@ exports.findOneAtelier = (req, res) => {
 };
 
 //update
-
-exports.putAtelier = (req, res) => {
-    // Validate Request()
-    // console.log('ity ny requete' +req.body.titre)
-    if(!req.body.titre || !req.body.description) {
-        return res.status(400).send({
-            message: "eleve content can not be empty"
-        });
-    }
-    console.log('ity n params' +req.params.atelierId)
+exports.putAtelier =  (req, res) => {
     let imageFile = req.files.image;
-        //console.log('inona ny ato o!'+imageFile)
+      console.log('image', req.files.image);
         let nomImage = req.params.atelierId
         res.setHeader('Content-Type', 'text/plain');
 
@@ -120,35 +111,24 @@ exports.putAtelier = (req, res) => {
             return res.status(500).send(err);
           }
         });
-        console.log('tonga eto v nw')
-    // Find and update eleve with the request body
-    Atelier.findByIdAndUpdate(req.params.atelierId, {
-                titre: req.body.titre,
-                idUser:req.body.idUser,
-                prix: req.body.prix,
-                description: req.body.description,
-                image:nomImage + '.jpg',
-                date: req.body.date,
-                duree: req.body.duree,
-                heure: req.body.heure,
-                place: req.body.place
-        
-    }, {new: true})
-    .then(user => {
-        if(!user) {
-            return res.status(404).send({
-                message: "eleve not found with id " + req.params.atelierId
+
+    Atelier.findById(req.params.atelierId, function (err, atelier) {
+        if (err)
+            res.send(err);atelier.titre = req.body.titre ? req.body.titre : atelier.titre;
+        atelier.description = req.body.description;
+        atelier.date = req.body.date;
+        atelier.heure = req.body.heure;// save the contact and check for errors
+        atelier.duree = req.body.duree;
+        atelier.place = req.body.place;
+        atelier.prix = req.body.prix;
+        image:'' + nomImage +'.jpg'
+        atelier.save(function (err) {
+            if (err)
+                res.json(err);
+            res.json({
+                message: 'Contact Info updated',
+                data: contact
             });
-        }
-        res.send(user);
-    }).catch(err => {
-        if(err.kind === 'ObjectId') {
-            return res.status(404).send({
-                message: "eleve not found with id " + req.params.atelierId
-            });                
-        }
-        return res.status(500).send({
-            message: "Something wrong updating note with id " + req.params.atelierId
         });
     });
 };

@@ -10,7 +10,7 @@
 
 #feedback-form * {
     box-sizing: border-box;
-    margin-top: 6.45vh !important;
+    /*margin-top: 6.45vh !important;*/
     color: #eee;
 }
 
@@ -25,15 +25,6 @@
   color: #eee;
 }
 
-#feedback-form input[type=text] {
-  display: block;
-  height: 4.128vh;
-  padding: 0.774vh 2.016vh;
-  width: 100%;
-  border: none;
-  background-color: #f3f3f3;
-  color: #eee;
-}
 
 #feedback-form label {
   color: #777;

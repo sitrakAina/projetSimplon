@@ -25,12 +25,12 @@ export default class Menu extends Component {
             <div>
                 <MDBNavbar color="#d05c62" dark expand="md" style={{ marginTop: "20px" }} id="navbar">
                     <MDBNavbarBrand>
-                        <img src="logo.png" alt="logo"/>
+                        <div id="logo_content"><img src="logo.png" alt="logo" id="logo" /></div>
                     </MDBNavbarBrand>
                     <MDBNavbarToggler onClick={this.toggleCollapse("navbarCollapse3")} />
                     <MDBCollapse id="navbarCollapse3" isOpen={this.state.collapseID} navbar>
                         <MDBNavbarNav left> <MDBNavItem > <MDBNavLink to="#!" className="nav-header">Accueil</MDBNavLink> </MDBNavItem>
-                            <MDBNavItem> <MDBNavLink to="/tousLesAteliers" className="nav-header">Liste</MDBNavLink>
+                            <MDBNavItem> <MDBNavLink to="/ateliers" className="nav-header">Liste</MDBNavLink>
                             </MDBNavItem> <MDBNavItem> <MDBNavLink to="#!" className="nav-header">Contacts</MDBNavLink> </MDBNavItem>
                         </MDBNavbarNav>
                         <MDBNavbarNav right>
@@ -40,6 +40,19 @@ export default class Menu extends Component {
                         </MDBNavbarNav>
                     </MDBCollapse>
                 </MDBNavbar>
+                 <section id="banner">
+                    <div class="bg-color">
+                      <div class="container">
+                        <div class="row">
+                          <div class="inner text-center">
+                            <h1 class="logo-name">Delicious</h1>
+                            <h2>Food To fit your lifestyle & health.</h2>
+                            <p>Specialized in Indian Cuisine!!</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
             </div>
         );
     }

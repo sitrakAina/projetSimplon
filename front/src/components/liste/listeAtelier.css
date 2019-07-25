@@ -22,11 +22,6 @@ $image-height: 250px;*/
    color: #333;
   text-decoration:none;
   }
-
-  a:hover {
-    text-decoration:none;
-    list-style: none;
-  }
   
   &:hover {  
     .card-image {
