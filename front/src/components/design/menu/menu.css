@@ -1,4 +1,62 @@
-#logo_content{
-    width: 10px;
-    height: 5p;
+
+#contentlogo{
+    width: 40%;
+    height: 60%;
+}
+
+#banner{
+    background: url() no-repeat center top;
+    background-size: cover;
+    min-height: 130px;
+    margin-top: 25px;
+}
+.bg-color{
+    background-color: #f3671f;
+    min-height: 500px;
+}
+#banner h2{
+    font-family: 'roboto', sans-serif;
+    font-size: 45px;
+    color: #FFB03B;
+    text-align: center;
+}
+#banner p{
+    font-family: 'verdana', sans-serif;
+    color: #fcfcfc;
+    font-size: 34px;
+    text-align: center;
+}
+..
+
+.section-padding{
+    padding: 60px 0px;
+}
+.logo-name{
+    font-family: 'roboto', sans-serif;
+    font-size: 65px;
+    margin-top: 140px;
+    color: #d05c62;
+}
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.5s;
+}
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s
+}
+.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
 }

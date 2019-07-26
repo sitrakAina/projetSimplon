@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 const fileUpload = require("express-fileupload");
 const cors = require('cors')
-const routes = require("./routes/projet/route");
+const users = require("./routes/api/users");
 
 const app = express();
 
@@ -21,14 +21,14 @@ app.use(fileUpload());
 app.use(cors());
 
 // DB Config
-const db = require("./config/db").mongoURI;
+const db = require("./config/keys").mongoURI;
 
 // Connect to MongoDB
 mongoose.connect(
 db,
     { useNewUrlParser: true }
   )
-  .then(() => console.log("MongoDB s'est connecté avec succès"))
+  .then(() => console.log("MongoDB successfully connected"))
   .catch(err => console.log(err));
 
 // Passport middleware
@@ -38,8 +38,8 @@ app.use(passport.initialize());
 require("./config/passport")(passport);
 
 // Routes
-app.use("/projet/routes", routes);
+app.use("/api/users", users);
 
 
 
-app.listen(port, () => console.log(`Le serveur est opérationnel sur le port ${port} !`));
+app.listen(port, () => console.log(`Server up and running on port ${port} !`));

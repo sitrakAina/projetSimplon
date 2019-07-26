@@ -1,7 +1,7 @@
 
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const keys = require("../config/db");
+const keys = require("../config/keys");
 const passport = require("passport");
 
 // Load input validation
@@ -9,9 +9,9 @@ const validateRegisterInput = require("../validation/register");
 const validateLoginInput = require("../validation/login");
 
 // Load User model
-const User = require("../models/cuisinierModel");
+const User = require("../models/User");
 
-exports.postRegister = (req, res) => {
+exports.register = (req, res) => {
   
     const { errors, isValid } = validateRegisterInput(req.body);
 
@@ -57,7 +57,7 @@ exports.postRegister = (req, res) => {
   });
 
 };
-exports.postLogin = (req,res) =>{
+exports.login = (req,res) =>{
     const { errors, isValid } = validateLoginInput(req.body);
 
   // Check validation
@@ -94,6 +94,7 @@ exports.postLogin = (req,res) =>{
           },
           (err, token) => {
             res.json({
+              id:user.id,
               success: true,
               token: "Bearer " + token
             });

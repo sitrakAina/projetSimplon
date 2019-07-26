@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './menu.css'
 import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse } from "mdbreact";
 
 export default class Menu extends Component {
@@ -23,15 +24,21 @@ export default class Menu extends Component {
     render() {
         return (
             <div>
-                <MDBNavbar color="#d05c62" dark expand="md" style={{ marginTop: "20px" }} id="navbar">
+                <MDBNavbar color="#d05c62" dark expand="md" id="navbar">
                     <MDBNavbarBrand>
-                        <div id="logo_content"><img src="logo.png" alt="logo" id="logo" /></div>
+                        <div id="contentlogo"><img src="logo.png" alt="logo" id="logo" /></div>
+                        
                     </MDBNavbarBrand>
                     <MDBNavbarToggler onClick={this.toggleCollapse("navbarCollapse3")} />
                     <MDBCollapse id="navbarCollapse3" isOpen={this.state.collapseID} navbar>
-                        <MDBNavbarNav left> <MDBNavItem > <MDBNavLink to="#!" className="nav-header">Accueil</MDBNavLink> </MDBNavItem>
-                            <MDBNavItem> <MDBNavLink to="/ateliers" className="nav-header">Liste</MDBNavLink>
-                            </MDBNavItem> <MDBNavItem> <MDBNavLink to="#!" className="nav-header">Contacts</MDBNavLink> </MDBNavItem>
+                        <MDBNavbarNav left>
+                            
+                            <MDBNavItem >
+                                <MDBNavLink to="/" className="nav-header">Accueil</MDBNavLink>
+                            </MDBNavItem>
+                            <MDBNavItem>
+                                <MDBNavLink to="/tousLesAteliers" className="nav-header">Liste</MDBNavLink>
+                            </MDBNavItem>
                         </MDBNavbarNav>
                         <MDBNavbarNav right>
                             <MDBNavItem>
@@ -40,19 +47,19 @@ export default class Menu extends Component {
                         </MDBNavbarNav>
                     </MDBCollapse>
                 </MDBNavbar>
-                 <section id="banner">
+                <section id="banner">
                     <div class="bg-color">
                       <div class="container">
                         <div class="row">
                           <div class="inner text-center">
-                            <h1 class="logo-name">Delicious</h1>
-                            <h2>Food To fit your lifestyle & health.</h2>
-                            <p>Specialized in Indian Cuisine!!</p>
+                            <h1 class="logo-name">Aina ketsika</h1>
+                            <h2>Apprends à cuisiner pour epicier vos sesns</h2>
+                            <p>Les ateliers, Elle sont faite pour vous!!</p>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </section>
+                </section>
             </div>
         );
     }
