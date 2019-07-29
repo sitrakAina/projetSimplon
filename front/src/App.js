@@ -6,8 +6,9 @@ import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
 import { Provider } from "react-redux";
 import store from "./store";
-
-import ListTout from "./components/liste/listeAtelier"
+import FooterPage from './components/design/foot/foot'
+import EditAtelier from './components/editAtelier/editAtelier'
+import ListTout from "./components/liste/liste"
 import Menu from "./components/design/menu/menu"
 import Landing from "./components/layout/Landing";
 import Register from "./components/auth/Register";
@@ -43,31 +44,41 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           <div className="container-fluid">
-            <Route exact path="/" component={Menu} />
-            <Route exact path="/tousLesAteliers" component={Menu} />           
+          <Route exact path="/" component={Menu} />
+          <Route exact path="/tousLesAteliers" component={Menu} />
             <div className="container-fluid">
               <div className="row">
                 <div className="col-md-3">
+                  <div className="container-fluid">
+                    {/* <h2>Bienvenu sur <span id="nomProject"><span className="aingo">T</span>sara<span className="aingo">Na</span>andro</span></h2> */}
+                  </div>
                 </div>
                 <div className="col-md-9">
                   <div className="container">
-    
                   </div>
                 </div>
               </div>
             </div>
+            
+            
             <Route exact path="/" component={Landing} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/newAtelier" component={NewAtelier} />
-            <Route exact path="/ateliers" component={ListTout} />
+            <Route exact path="/tousLesAteliers" component={ListTout} />
             <Switch>
+              <PrivateRoute exact path="/modifierAtl/:id" component={EditAtelier} />
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
             </Switch>
+            <Route exact path="/foot" component={FooterPage} />
+          <Route exact path="/Particulier" component={FooterPage} />
+          <Route exact path="/" component={FooterPage} />
+          <Route exact path="/tousLesAteliers" component={FooterPage} />
           </div>
+          
         </Router>
       </Provider>
     );
   }
 }
-export default App;  
+export default App;

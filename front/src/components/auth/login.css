@@ -1,9 +1,9 @@
 #feedback-form {
   width: 64.5vh;
   margin: 0 auto;
-  background-color: #d05c62;
+  background-color: #f3671f;
   padding: 2.58vh 6.45vh 5.16vh;
-  box-shadow: 0.129vh 0.516vh 1.29vh 0.129vh #aaa;
+  box-shadow: 0.129vh 0.516vh 1.29vh 0.129vh #d05c62;
   font-family: verdana, sans-serif;
   color: #eee;
 }
@@ -25,7 +25,7 @@
   color: #eee;
 }
 
-#feedback-form input[type=text] {
+/* #feedback-form input[type=text] {
   display: block;
   height: 4.128vh;
   padding: 0.774vh 2.016vh;
@@ -33,7 +33,7 @@
   border: none;
   background-color: #f3f3f3;
   color: #eee;
-}
+} */
 
 #feedback-form label {
   color: #777;
@@ -65,5 +65,5 @@
   color: #eee;
   font-weight: 700;
   box-shadow: 0.129vh 0.516vh 1.29vh 0.129vh #aaa;
-  background: #f3671f !important;
+  background: #d05c62 !important;
 }

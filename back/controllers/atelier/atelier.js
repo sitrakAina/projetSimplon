@@ -1,10 +1,9 @@
-const Atelier = require('../../models/atelierModel');
-const Cuisinier = require('../../models/cuisinierModel')
+const Atelier = require('../../models/Atelier.model');
+// const UserCuisiner = require('../../models/User')
 const fs = require('fs')
 
 //Create new Article
-exports.postAtelier = (req, res) => {
-    Cuisinier.findById(req.params.id).then(use =>{
+exports.create = (req, res) => {
         Atelier.find()
         .then(user => {
             var id;
@@ -24,14 +23,15 @@ exports.postAtelier = (req, res) => {
             });
             const atelier = new Atelier({
                 _id: id,
-                // id2:use.id,
+                idUser:req.body.idUser,
                 titre: req.body.titre,
                 prix: req.body.prix,
                 description: req.body.description,
                 image:nomImage + '.jpg',
                 duree: req.body.duree,
-                heure: req.body.heure,
-                place: req.body.place
+                debut: req.body.debut,
+                place: req.body.place,
+                placeRes: req.body.placeRes
             });
             atelier.save()
                 .then(() => {
@@ -45,12 +45,11 @@ exports.postAtelier = (req, res) => {
                     });
                 });
         })
-    })
     
 };
 
 //Get un par un image
-exports.findImageAtelier =(req, res) =>{ 
+exports.findOneArticle =(req, res) =>{ 
     try { 
         let picture = fs.readFileSync('./controllers/atelier/public/'+req.params.image)
         console.log('params: ',req.params.image);
@@ -61,7 +60,7 @@ exports.findImageAtelier =(req, res) =>{
 
 
     
-exports.findAllAtelier = (req, res) => {
+exports.findAllArticle = (req, res) => {
     Atelier.find()
         .then(atel => {
             res.send(atel);
@@ -73,13 +72,13 @@ exports.findAllAtelier = (req, res) => {
 };
 
 // Find a single article with a articleID
-exports.findOneAtelier = (req, res) => {
-    Atelier.findById(req.params.atelierId)
+exports.findOne = (req, res) => {
+    Atelier.find({idUser:req.params.idUser})
         .then(profilchoix => {
             //console.log(unprofil)
             if (!profilchoix) {
                 return res.status(404).send({
-                    message: "profil not found with id" + req.params.atelierId
+                    message: "profil not found with id" + req.params.idUser
                 });
             }
             else {
@@ -90,29 +89,29 @@ exports.findOneAtelier = (req, res) => {
         }).catch(err => {
             if (err.kind === 'ObjectId') {
                 return res.status(404).send({
-                    message: "profil not found with id " + req.params.atelierId
+                    message: "profil not found with id " + req.params.idUser
                 });
             }
             return res.status(500).send({
-                message: "Something wrong retrieving profil with id " + req.params.atelierId
+                message: "Something wrong retrieving profil with id " + req.params.idUser
             });
         });
 };
 
 //update
 
-exports.putAtelier = (req, res) => {
+exports.update = (req, res) => {
     // Validate Request()
-    // console.log('ity ny requete' +req.body.titre)
+    console.log('ity ny requete'+req.body.nom)
     if(!req.body.titre || !req.body.description) {
         return res.status(400).send({
             message: "eleve content can not be empty"
         });
     }
-    console.log('ity n params' +req.params.atelierId)
+    console.log('ity n params'+req.params.profilId)
     let imageFile = req.files.image;
         //console.log('inona ny ato o!'+imageFile)
-        let nomImage = req.params.atelierId
+        let nomImage = req.params.profilId
         res.setHeader('Content-Type', 'text/plain');
 
         imageFile.mv(`${__dirname}/public/${nomImage }.jpg`, function(err) {
@@ -122,33 +121,33 @@ exports.putAtelier = (req, res) => {
         });
         console.log('tonga eto v nw')
     // Find and update eleve with the request body
-    Atelier.findByIdAndUpdate(req.params.atelierId, {
+    Atelier.findByIdAndUpdate(req.params.profilId, {
                 titre: req.body.titre,
                 idUser:req.body.idUser,
                 prix: req.body.prix,
                 description: req.body.description,
                 image:nomImage + '.jpg',
-                date: req.body.date,
                 duree: req.body.duree,
-                heure: req.body.heure,
-                place: req.body.place
+                debut: req.body.debut,
+                place: req.body.place,
+                placeRes: req.body.placeRes
         
     }, {new: true})
     .then(user => {
         if(!user) {
             return res.status(404).send({
-                message: "eleve not found with id " + req.params.atelierId
+                message: "eleve not found with id " + req.params.profilId
             });
         }
         res.send(user);
     }).catch(err => {
         if(err.kind === 'ObjectId') {
             return res.status(404).send({
-                message: "eleve not found with id " + req.params.atelierId
+                message: "eleve not found with id " + req.params.profilId
             });                
         }
         return res.status(500).send({
-            message: "Something wrong updating note with id " + req.params.atelierId
+            message: "Something wrong updating note with id " + req.params.profilId
         });
     });
 };

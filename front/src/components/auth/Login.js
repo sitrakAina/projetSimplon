@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
 import classnames from "classnames";
 import './login.css';
-
 class Login extends Component {
   constructor() {
     super();
@@ -58,9 +57,8 @@ class Login extends Component {
     return (
       <div className="container">
         <div id="feedback-form">
-          <h2 class="header">S'identifier</h2>
           <Link to="/" className="btn-flat waves-effect">
-              <i className="material-icons left">keyboard_backspace</i> retour à la acceuil
+              <i className="material-icons left">keyboard_backspace</i>acceuil
           </Link>
           <div>
             <form noValidate onSubmit={this.onSubmit}>
@@ -92,7 +90,7 @@ class Login extends Component {
                     invalid: errors.password || errors.passwordincorrect
                   })}
                 />
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password">Mot de passe</label>
                 <span className="red-text">
                   {errors.password}
                   {errors.passwordincorrect}
@@ -101,15 +99,15 @@ class Login extends Component {
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                 <button
                   style={{
-                    width: "150px",
-                    borderRadius: "3px",
-                    letterSpacing: "1.5px",
+                    width: "19.35vh",
+                    borderRadius: "0.387vh",
+                    letterSpacing: "0.193",
                     marginTop: "1rem"
                   }}
                   type="submit"
                   className="btn btn-large waves-effect waves-light hoverable blue accent-3"
                 >
-                  Login
+                  Connecter
                 </button>
               </div>
             </form>
